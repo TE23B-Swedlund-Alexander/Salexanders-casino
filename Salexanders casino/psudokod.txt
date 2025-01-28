@@ -1,0 +1,29 @@
+roulette
+1-50 x20
+ 3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49 red x2 strings (add thrugh loop at strart)
+ 2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,30,42,44,46,48, black x2 strings
+ 1,50 green x14 string
+
+
+dice
+2,12,= jackpot x4
+7=win x2
+roll two dice, add together, se if win
+
+
+higher lower
+play card (ace is one king is 13)
+is next higher or lower
+if correct
+x2 money
+if wrong loose it all
+
+bingo
+get bingo card 50 money (bingo card is method)
+1-100
+get bingo
+4 other bingo cards played by computer
+get bingo first and win 150 money
+
+if you win x100 starting money BANNED
+x1000 EXECUTED
