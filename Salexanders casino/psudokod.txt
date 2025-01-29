@@ -1,3 +1,5 @@
+betting is a funktion
+
 roulette
 1-50 x20
  3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49 red x2 strings (add thrugh loop at strart)
@@ -18,12 +20,6 @@ if correct
 x2 money
 if wrong loose it all
 
-bingo
-get bingo card 50 money (bingo card is method)
-1-100
-get bingo
-4 other bingo cards played by computer
-get bingo first and win 150 money
 
 if you win x100 starting money BANNED
 x1000 EXECUTED

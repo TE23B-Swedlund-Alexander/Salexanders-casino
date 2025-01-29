@@ -1,0 +1,15 @@
+c:\Users\alexander.swedlund\New folder\Salexanders casino\Salexanders casino\bin\Debug\net8.0\Salexanders casino.exe
+c:\Users\alexander.swedlund\New folder\Salexanders casino\Salexanders casino\bin\Debug\net8.0\Salexanders casino.deps.json
+c:\Users\alexander.swedlund\New folder\Salexanders casino\Salexanders casino\bin\Debug\net8.0\Salexanders casino.runtimeconfig.json
+c:\Users\alexander.swedlund\New folder\Salexanders casino\Salexanders casino\bin\Debug\net8.0\Salexanders casino.dll
+c:\Users\alexander.swedlund\New folder\Salexanders casino\Salexanders casino\bin\Debug\net8.0\Salexanders casino.pdb
+c:\Users\alexander.swedlund\New folder\Salexanders casino\Salexanders casino\obj\Debug\net8.0\Salexanders casino.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\alexander.swedlund\New folder\Salexanders casino\Salexanders casino\obj\Debug\net8.0\Salexanders casino.AssemblyInfoInputs.cache
+c:\Users\alexander.swedlund\New folder\Salexanders casino\Salexanders casino\obj\Debug\net8.0\Salexanders casino.AssemblyInfo.cs
+c:\Users\alexander.swedlund\New folder\Salexanders casino\Salexanders casino\obj\Debug\net8.0\Salexanders casino.csproj.CoreCompileInputs.cache
+c:\Users\alexander.swedlund\New folder\Salexanders casino\Salexanders casino\obj\Debug\net8.0\Salexanders casino.sourcelink.json
+c:\Users\alexander.swedlund\New folder\Salexanders casino\Salexanders casino\obj\Debug\net8.0\Salexanders casino.dll
+c:\Users\alexander.swedlund\New folder\Salexanders casino\Salexanders casino\obj\Debug\net8.0\refint\Salexanders casino.dll
+c:\Users\alexander.swedlund\New folder\Salexanders casino\Salexanders casino\obj\Debug\net8.0\Salexanders casino.pdb
+c:\Users\alexander.swedlund\New folder\Salexanders casino\Salexanders casino\obj\Debug\net8.0\Salexanders casino.genruntimeconfig.cache
+c:\Users\alexander.swedlund\New folder\Salexanders casino\Salexanders casino\obj\Debug\net8.0\ref\Salexanders casino.dll
