@@ -1,4 +1,5 @@
-betting is a funktion
+betting is a function
+every game is a function
 
 roulette
 1-50 x20
@@ -8,7 +9,7 @@ roulette
 
 
 dice
-2,12,= jackpot x4
+2,12,= jackpot x5
 7=win x2
 roll two dice, add together, se if win
 

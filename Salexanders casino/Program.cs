@@ -30,6 +30,7 @@ static int bet(int capital)
     }
     return bet;
 }
+
 static int dicegame(int bet, int money)
 {
     Random rnd = new Random();
@@ -56,24 +57,118 @@ static int dicegame(int bet, int money)
     }
     return money;
 }
+
 static int roulettegame(int bet, int money)
 {
-List<int>red=[];
-List<int>black=[];
-List<int>green=[1,50];
-for (int i=0; i<24; i++){
-    red.Add (i*2+2);
+    Random rnd = new Random();
+    bool placedBetIsNumber = false;
+    bool betIsOnTable = false;
+    string placedBet = "100";
+    int betInNumber = 100;
+    int rouletteResult = rnd.Next(1, 50);
+    List<int> red = [];
+    List<int> black = [];
+    List<int> green = [1, 50];
+    for (int i = 0; i < 24; i++)
+    {
+        red.Add(i * 2 + 2);
 
-}
-for (int i=0; i<24; i--){
-    black.Add (i*2+3);
+    }
+    for (int i = 0; i < 24; i++)
+    {
+        black.Add(i * 2 + 3);
 
-}
+    }
+    while (betIsOnTable == false)
+    {
+        Console.WriteLine("were do you place your bet? red, black, green or 1-50");
+        placedBet = Console.ReadLine();
+        placedBetIsNumber = int.TryParse(placedBet, out betInNumber);
+        if (betInNumber > 50 || betInNumber < 1) placedBetIsNumber = false;
+        if (placedBetIsNumber == true || placedBet == "red" || placedBet == "black" || placedBet == "green") betIsOnTable = true;
+    }
 
+
+    if (placedBetIsNumber == true)
+    {
+        if (rouletteResult == betInNumber)
+        {
+            money += bet * 20;
+            Console.WriteLine($"you won {bet * 20} monies");
+        }
+        else
+        {
+            Console.WriteLine("you lose");
+        }
+
+    }
+
+    if (placedBetIsNumber == false)
+    {
+        if (placedBet == "red")
+        {
+            if (red.Contains(rouletteResult))
+            {
+                Console.WriteLine($"you win {bet * 2}");
+                money += bet * 2;
+            }
+            else Console.WriteLine("you lose");
+
+        }
+        if (placedBet == "black")
+        {
+            if (black.Contains(rouletteResult))
+            {
+                Console.WriteLine($"you win {bet * 2}");
+                money += bet * 2;
+            }
+            else Console.WriteLine("you lose");
+        }
+        if (placedBet == "green")
+        {
+            if (green.Contains(rouletteResult))
+            {
+                Console.WriteLine($"you win {bet * 10}");
+                money += bet * 10;
+            }
+            else Console.WriteLine("you lose");
+        }
+    }
     return money;
 }
+
 static int higherlowergame(int bet, int money)
 {
+    Random rnd = new Random();
+    bool streakIsGoing = true;
+    int priveousNumber = 0;
+    int newNumber;
+    int score;
+    List<int> cards = [];
+    List<string> suits = [];
+    for (int i = 1; i < 14; i++)
+    {
+        for (int u = 0; u < 4; u++)
+        {
+            cards.Add(i);
+
+        }
+    }
+  
+
+    while (streakIsGoing == true)
+    {
+        newNumber = rnd.Next(0, cards.Count);
+
+
+        Console.WriteLine($"the card is prievious number");
+        Console.WriteLine("higher or lower");
+        priveousNumber = newNumber;
+    }
+
+
+
+
 
 
     return money;
@@ -100,11 +195,11 @@ while (cashOut == false)
         }
         if (chosenGame.ToLower() == "roulette")
         {
-balance= roulettegame(currentBet,balance);
+            balance = roulettegame(currentBet, balance);
         }
         if (chosenGame.ToLower() == "higher lower")
         {
-
+            balance = higherlowergame(currentBet, balance);
         }
         Console.WriteLine("play again, choose new game or cashout?");
         Console.WriteLine("to play same game again type [again]");
