@@ -141,11 +141,18 @@ static int higherlowergame(int bet, int money)
 {
     Random rnd = new Random();
     bool streakIsGoing = true;
-    int priveousNumber = 0;
+    bool guessIsHigherLower = false;
+    bool chosenIfKeepGoing = false;
+    string playerGuess = "";
+    string higherOrLower = "";
+    string keepGoing = "";
+
     int newNumber;
-    int score;
+    int score = 0;
     List<int> cards = [];
+    List<int> cardsDrawn = [];
     List<string> suits = [];
+    List<string> suitsdrawn = [];
     for (int i = 1; i < 14; i++)
     {
         for (int u = 0; u < 4; u++)
@@ -154,16 +161,89 @@ static int higherlowergame(int bet, int money)
 
         }
     }
-  
+    for (int i = 1; i < 14; i++)
+    {
+
+        suits.Add("spades");
+        suits.Add("clubs");
+        suits.Add("diamonds");
+        suits.Add("hearts");
+
+    }
+
+    suitsdrawn.Add(suits[0]);
+    suits.Remove(suits[0]);
+    cardsDrawn.Add(cards[0]);
+    cards.Remove(cards[0]);
 
     while (streakIsGoing == true)
     {
         newNumber = rnd.Next(0, cards.Count);
 
 
-        Console.WriteLine($"the card is prievious number");
+        Console.WriteLine($"the card is the {cardsDrawn[score]} of {suitsdrawn[score]}");
         Console.WriteLine("higher or lower");
-        priveousNumber = newNumber;
+        while (guessIsHigherLower == false)
+        {
+            playerGuess = Console.ReadLine();
+            if (playerGuess == "higher" || playerGuess == "lower") guessIsHigherLower = true; else Console.WriteLine("you have to answer with higher or lower in lowercase letters");
+        }
+        guessIsHigherLower=false;
+        Console.WriteLine($"the new card is the {cards[newNumber]} of {suits[newNumber]}");
+        if (cards[newNumber] < cardsDrawn[score] && playerGuess == "lower")
+        {
+            higherOrLower = "lower than";
+        }
+        else if (cards[newNumber] > cardsDrawn[score] && playerGuess == "higher")
+        {
+            higherOrLower = "higher than";
+
+        }
+        if (cards[newNumber] < cardsDrawn[score] && playerGuess == "higher")
+        {
+            higherOrLower = "lower than";
+            streakIsGoing = false;
+        }
+        else if (cards[newNumber] > cardsDrawn[score] && playerGuess == "lower")
+        {
+            higherOrLower = "higher than";
+            streakIsGoing = false;
+        }
+        else if (cards[newNumber] == cardsDrawn[score])
+        {
+            higherOrLower = "eaqual to";
+        }
+
+        Console.WriteLine($"wich is {higherOrLower} the {cardsDrawn[score]} of {suitsdrawn[score]}");
+        if (streakIsGoing == false)
+        {
+            money -= bet;
+            Console.WriteLine("you loose");
+        }
+        if (streakIsGoing == true)
+        {
+            Console.WriteLine("do you want to keep giong yes/no");
+            while (chosenIfKeepGoing == false)
+            {
+
+                keepGoing = Console.ReadLine();
+                if (keepGoing == "yes" || keepGoing == "no") chosenIfKeepGoing = true;
+            }
+            chosenIfKeepGoing=false;
+            if (keepGoing == "no")
+            {
+                money += score * bet;
+                Console.WriteLine($"you made {score * bet} money");
+                streakIsGoing = false;
+            }
+
+        }
+        suitsdrawn.Add(suits[newNumber]);
+        suits.Remove(suits[newNumber]);
+        cardsDrawn.Add(cards[newNumber]);
+        cards.Remove(cards[newNumber]);
+        score++;
+
     }
 
 
