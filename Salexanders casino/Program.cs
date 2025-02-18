@@ -162,7 +162,7 @@ static int higherlowergame(int bet, int money) // higher lower game
     {
         for (int u = 0; u < 4; u++) // makes deck
         {
-            cards.Add(i+1);
+            cards.Add(i + 1);
 
         }
     }
@@ -176,33 +176,35 @@ static int higherlowergame(int bet, int money) // higher lower game
 
     }
 
-    suitsdrawn.Add(suits[0]);
+    suitsdrawn.Add(suits[0]); //makes starting value
     suits.Remove(suits[0]);
     cardsDrawn.Add(cards[0]);
     cards.Remove(cards[0]);
 
-    while (streakIsGoing == true && cards.Count > 0)
+    while (streakIsGoing == true && cards.Count > 0) //game is running
     {
-        newNumber = rnd.Next(0, cards.Count);
+        newNumber = rnd.Next(0, cards.Count); // chooses new card
 
         if (cardsDrawn[score] == 14) Console.WriteLine($"the card is the ace of {suitsdrawn[score]}");
         else if (cardsDrawn[score] == 11) Console.WriteLine($"the card is the jack of {suitsdrawn[score]}");
         else if (cardsDrawn[score] == 12) Console.WriteLine($"the card is the queen of {suitsdrawn[score]}");
         else if (cardsDrawn[score] == 13) Console.WriteLine($"the card is the king of {suitsdrawn[score]}");
         else Console.WriteLine($"the card is the {cardsDrawn[score]} of {suitsdrawn[score]}");
+
         Console.WriteLine("higher or lower");
-        while (guessIsHigherLower == false)
+        while (guessIsHigherLower == false) //is guess a valid option
         {
             playerGuess = Console.ReadLine();
             if (playerGuess == "higher" || playerGuess == "lower") guessIsHigherLower = true; else Console.WriteLine("you have to answer with higher or lower in lowercase letters");
         }
         guessIsHigherLower = false;
+
         if (cards[newNumber] == 14) Console.WriteLine($"the new card is the ace of {suits[newNumber]}");
         else if (cards[newNumber] == 11) Console.WriteLine($"the new card is the jack of {suits[newNumber]}");
         else if (cards[newNumber] == 12) Console.WriteLine($"the new card is the queen of {suits[newNumber]}");
         else if (cards[newNumber] == 13) Console.WriteLine($"the new card is the king of {suits[newNumber]}");
-        else  Console.WriteLine($"the new card is the {cards[newNumber]} of {suits[newNumber]}");
-        if (cards[newNumber] < cardsDrawn[score] && playerGuess == "lower")
+        else Console.WriteLine($"the new card is the {cards[newNumber]} of {suits[newNumber]}");
+        if (cards[newNumber] < cardsDrawn[score] && playerGuess == "lower") // makes text say the right thing later and checks if guess is correct
         {
             higherOrLower = "lower than";
         }
@@ -225,20 +227,20 @@ static int higherlowergame(int bet, int money) // higher lower game
         {
             higherOrLower = "eaqual to";
         }
-        if ( cardsDrawn[score]== 14) Console.WriteLine($"which is {higherOrLower} the ace of {suitsdrawn[score]}");
+        if (cardsDrawn[score] == 14) Console.WriteLine($"which is {higherOrLower} the ace of {suitsdrawn[score]}"); //tells player if card is higher or lower
         else if (cardsDrawn[score] == 11) Console.WriteLine($"which is {higherOrLower} the jack of {suitsdrawn[score]}");
         else if (cardsDrawn[score] == 12) Console.WriteLine($"which is {higherOrLower} the queen of {suitsdrawn[score]}");
         else if (cardsDrawn[score] == 13) Console.WriteLine($"which is {higherOrLower} the king of {suitsdrawn[score]}");
-        else if (cardsDrawn[score]<11&&cardsDrawn[score]>1)Console.WriteLine($"which is {higherOrLower} the {cardsDrawn[score]} of {suitsdrawn[score]}");
+        else if (cardsDrawn[score] < 11 && cardsDrawn[score] > 1) Console.WriteLine($"which is {higherOrLower} the {cardsDrawn[score]} of {suitsdrawn[score]}");
 
-        if (streakIsGoing == false)
+        if (streakIsGoing == false) //if guess was wrong
         {
             money -= bet;
             Console.WriteLine("you loose");
         }
-        if (streakIsGoing == true)
+        if (streakIsGoing == true) // if guess was right
         {
-            Console.WriteLine("do you want to keep giong yes/no");
+            Console.WriteLine("do you want to keep giong yes/no"); //kepp going or cash out
             while (chosenIfKeepGoing == false)
             {
 
@@ -270,12 +272,12 @@ static int higherlowergame(int bet, int money) // higher lower game
     return money;
 }
 
-while (cashOut == false&&balance>0)
+while (cashOut == false && balance > 0)
 {
     Console.WriteLine("welcome to Salexanders casino the best casino in the world, we hace amazing games like: dice, roulette and higher lower");
     Console.WriteLine("which game are you going to play?");
 
-    while (gameChosen == false)
+    while (gameChosen == false) //choose game
     {
         chosenGame = Console.ReadLine();
         if (chosenGame.ToLower() == "dice" || chosenGame.ToLower() == "roulette" || chosenGame.ToLower() == "higher lower")
@@ -283,7 +285,7 @@ while (cashOut == false&&balance>0)
             gameChosen = true;
         }
     }
-    while (gameChosen == true)
+    while (gameChosen == true) // runs bet and chosen game
     {
         currentBet = bet(balance);
         if (chosenGame.ToLower() == "dice")
@@ -320,6 +322,7 @@ while (cashOut == false&&balance>0)
                 cashOut = true;
             }
         }
+        decideIfRetry = false;
     }
 }
 
