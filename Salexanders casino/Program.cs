@@ -1,8 +1,9 @@
 ﻿//variables
+using System.ComponentModel;
 using System.ComponentModel.Design;
 
-int balance = 200;
-int currentBet = 0;
+int balance = 200; //money
+int currentBet = 0; // ´the bet
 string chosenGame = ""; //indicates what game was chosen
 string bigChoice = ""; // works with decideIfRetry
 bool cashOut = false; // if false game is running if true game is not
@@ -10,47 +11,47 @@ bool gameChosen = false; // indicates if a game was chosen
 bool decideIfRetry = false; //makes sure that the player decides to play again
 //funktions
 
-static int bet(int capital)
+static int bet(int capital) // betting function
 {
 
     //inner variables
-    bool acceptedBet = false;
-    bool betIsNumber = false;
-    string chosenBet = "";
-    int bet = 0;
+    bool acceptedBet = false; //is the bet valid a valid number
+    bool betIsNumber = false; // is the bet a number
+    string chosenBet = ""; // collects input for bet
+    int bet = 0; // the bet
 
     //getting an accepted bet
     Console.WriteLine($"how much are you betting? you have {capital} money");
-    while (acceptedBet == false)
+    while (acceptedBet == false) //while the bet is invalid
     {
-        chosenBet = Console.ReadLine();
-        betIsNumber = int.TryParse(chosenBet, out bet);
-        if (betIsNumber == true && bet <= capital && bet > 0) acceptedBet = true;
+        chosenBet = Console.ReadLine(); //collecting input for bet
+        betIsNumber = int.TryParse(chosenBet, out bet); // turning bet into int
+        if (betIsNumber == true && bet <= capital && bet > 0) acceptedBet = true; // is bet accepted
         else Console.WriteLine($"your bet has to be a number larger than zero and smaller than {capital}");
     }
-    return bet;
+    return bet; // makes function return the bet
 }
 
-static int dicegame(int bet, int money)
+static int dicegame(int bet, int money) // the dice game function
 {
     Random rnd = new Random();
     int dieOne = rnd.Next(1, 6);
     int dieTwo = rnd.Next(1, 6);
-    int dieSum = dieOne + dieTwo;
+    int dieSum = dieOne + dieTwo; // gives outcome of dice
 
-    if (dieSum == 2 || dieSum == 12)
+    if (dieSum == 2 || dieSum == 12) //big win
     {
 
         money += bet * 5;
         Console.WriteLine("you won the big price");
 
     }
-    else if (dieSum == 7)
+    else if (dieSum == 7) // small win
     {
         money += bet * 2;
         Console.WriteLine("you won the small price");
     }
-    else
+    else // loss
     {
         money -= bet;
         Console.WriteLine("you lost your bet");
@@ -58,28 +59,28 @@ static int dicegame(int bet, int money)
     return money;
 }
 
-static int roulettegame(int bet, int money)
+static int roulettegame(int bet, int money) // roulette
 {
     Random rnd = new Random();
-    bool placedBetIsNumber = false;
-    bool betIsOnTable = false;
-    string placedBet = "100";
-    int betInNumber = 100;
-    int rouletteResult = rnd.Next(1, 50);
+    bool placedBetIsNumber = false; //has player placed bet on number
+    bool betIsOnTable = false; // is the bet available
+    string placedBet = "100"; // checks bet
+    int betInNumber = 100; // in case bet is a number
+    int rouletteResult = rnd.Next(1, 50); //spinns roulette thingy
     List<int> red = [];
     List<int> black = [];
-    List<int> green = [1, 50];
-    for (int i = 0; i < 24; i++)
+    List<int> green = [1, 50]; //color lists
+    for (int i = 0; i < 24; i++) //fills red
     {
         red.Add(i * 2 + 2);
 
     }
-    for (int i = 0; i < 24; i++)
+    for (int i = 0; i < 24; i++) // fills black
     {
         black.Add(i * 2 + 3);
 
     }
-    while (betIsOnTable == false)
+    while (betIsOnTable == false)// collects bet
     {
         Console.WriteLine("were do you place your bet? red, black, green or 1-50");
         placedBet = Console.ReadLine();
@@ -88,8 +89,12 @@ static int roulettegame(int bet, int money)
         if (placedBetIsNumber == true || placedBet == "red" || placedBet == "black" || placedBet == "green") betIsOnTable = true;
     }
 
-
-    if (placedBetIsNumber == true)
+    Console.Write(rouletteResult); // gives result to player
+    if (red.Contains(rouletteResult)) Console.WriteLine("red");
+    if (black.Contains(rouletteResult)) Console.WriteLine("black");
+    if (green.Contains(rouletteResult)) Console.WriteLine("green");
+    Console.ReadLine();
+    if (placedBetIsNumber == true) // did the player bet on a number
     {
         if (rouletteResult == betInNumber)
         {
@@ -103,11 +108,11 @@ static int roulettegame(int bet, int money)
 
     }
 
-    if (placedBetIsNumber == false)
+    if (placedBetIsNumber == false) // did the player bet on a color
     {
-        if (placedBet == "red")
+        if (placedBet == "red") //did the player bet red
         {
-            if (red.Contains(rouletteResult))
+            if (red.Contains(rouletteResult)) //did the player win
             {
                 Console.WriteLine($"you win {bet * 2}");
                 money += bet * 2;
@@ -115,20 +120,20 @@ static int roulettegame(int bet, int money)
             else Console.WriteLine("you lose");
 
         }
-        if (placedBet == "black")
+        if (placedBet == "black") //did the player bet black
         {
             if (black.Contains(rouletteResult))
             {
-                Console.WriteLine($"you win {bet * 2}");
+                Console.WriteLine($"you win {bet * 2}"); //did the player win
                 money += bet * 2;
             }
             else Console.WriteLine("you lose");
         }
-        if (placedBet == "green")
+        if (placedBet == "green") //did the player bet green
         {
             if (green.Contains(rouletteResult))
             {
-                Console.WriteLine($"you win {bet * 10}");
+                Console.WriteLine($"you win {bet * 10}"); //did the player win
                 money += bet * 10;
             }
             else Console.WriteLine("you lose");
@@ -137,12 +142,12 @@ static int roulettegame(int bet, int money)
     return money;
 }
 
-static int higherlowergame(int bet, int money)
+static int higherlowergame(int bet, int money) // higher lower game
 {
     Random rnd = new Random();
-    bool streakIsGoing = true;
-    bool guessIsHigherLower = false;
-    bool chosenIfKeepGoing = false;
+    bool streakIsGoing = true; // is the streak going
+    bool guessIsHigherLower = false; // is the guess valid
+    bool chosenIfKeepGoing = false; // is the player cashing out
     string playerGuess = "";
     string higherOrLower = "";
     string keepGoing = "";
@@ -155,9 +160,9 @@ static int higherlowergame(int bet, int money)
     List<string> suitsdrawn = [];
     for (int i = 1; i < 14; i++)
     {
-        for (int u = 0; u < 4; u++)
+        for (int u = 0; u < 4; u++) // makes deck
         {
-            cards.Add(i);
+            cards.Add(i+1);
 
         }
     }
@@ -176,20 +181,27 @@ static int higherlowergame(int bet, int money)
     cardsDrawn.Add(cards[0]);
     cards.Remove(cards[0]);
 
-    while (streakIsGoing == true)
+    while (streakIsGoing == true && cards.Count > 0)
     {
         newNumber = rnd.Next(0, cards.Count);
 
-
-        Console.WriteLine($"the card is the {cardsDrawn[score]} of {suitsdrawn[score]}");
+        if (cardsDrawn[score] == 14) Console.WriteLine($"the card is the ace of {suitsdrawn[score]}");
+        else if (cardsDrawn[score] == 11) Console.WriteLine($"the card is the jack of {suitsdrawn[score]}");
+        else if (cardsDrawn[score] == 12) Console.WriteLine($"the card is the queen of {suitsdrawn[score]}");
+        else if (cardsDrawn[score] == 13) Console.WriteLine($"the card is the king of {suitsdrawn[score]}");
+        else Console.WriteLine($"the card is the {cardsDrawn[score]} of {suitsdrawn[score]}");
         Console.WriteLine("higher or lower");
         while (guessIsHigherLower == false)
         {
             playerGuess = Console.ReadLine();
             if (playerGuess == "higher" || playerGuess == "lower") guessIsHigherLower = true; else Console.WriteLine("you have to answer with higher or lower in lowercase letters");
         }
-        guessIsHigherLower=false;
-        Console.WriteLine($"the new card is the {cards[newNumber]} of {suits[newNumber]}");
+        guessIsHigherLower = false;
+        if (cards[newNumber] == 14) Console.WriteLine($"the new card is the ace of {suits[newNumber]}");
+        else if (cards[newNumber] == 11) Console.WriteLine($"the new card is the jack of {suits[newNumber]}");
+        else if (cards[newNumber] == 12) Console.WriteLine($"the new card is the queen of {suits[newNumber]}");
+        else if (cards[newNumber] == 13) Console.WriteLine($"the new card is the king of {suits[newNumber]}");
+        else  Console.WriteLine($"the new card is the {cards[newNumber]} of {suits[newNumber]}");
         if (cards[newNumber] < cardsDrawn[score] && playerGuess == "lower")
         {
             higherOrLower = "lower than";
@@ -213,8 +225,12 @@ static int higherlowergame(int bet, int money)
         {
             higherOrLower = "eaqual to";
         }
+        if ( cardsDrawn[score]== 14) Console.WriteLine($"which is {higherOrLower} the ace of {suitsdrawn[score]}");
+        else if (cardsDrawn[score] == 11) Console.WriteLine($"which is {higherOrLower} the jack of {suitsdrawn[score]}");
+        else if (cardsDrawn[score] == 12) Console.WriteLine($"which is {higherOrLower} the queen of {suitsdrawn[score]}");
+        else if (cardsDrawn[score] == 13) Console.WriteLine($"which is {higherOrLower} the king of {suitsdrawn[score]}");
+        else if (cardsDrawn[score]<11&&cardsDrawn[score]>1)Console.WriteLine($"which is {higherOrLower} the {cardsDrawn[score]} of {suitsdrawn[score]}");
 
-        Console.WriteLine($"wich is {higherOrLower} the {cardsDrawn[score]} of {suitsdrawn[score]}");
         if (streakIsGoing == false)
         {
             money -= bet;
@@ -229,7 +245,7 @@ static int higherlowergame(int bet, int money)
                 keepGoing = Console.ReadLine();
                 if (keepGoing == "yes" || keepGoing == "no") chosenIfKeepGoing = true;
             }
-            chosenIfKeepGoing=false;
+            chosenIfKeepGoing = false;
             if (keepGoing == "no")
             {
                 money += score * bet;
@@ -307,7 +323,12 @@ while (cashOut == false)
 }
 
 
-
+if (cashOut == true)
+{
+    Console.WriteLine($"you made it out with {balance} mony");
+}
+if (balance == 0) Console.WriteLine("ha broke");
+Console.ReadLine();
 
 
 
