@@ -269,7 +269,8 @@ static int higherlowergame(int bet, int money) // higher lower game
 
     return money;
 }
-while (cashOut == false)
+
+while (cashOut == false&&balance>0)
 {
     Console.WriteLine("welcome to Salexanders casino the best casino in the world, we hace amazing games like: dice, roulette and higher lower");
     Console.WriteLine("which game are you going to play?");
