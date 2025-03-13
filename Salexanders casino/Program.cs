@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.Design;
 
 int balance = 200; //money
-int currentBet = 0; // ´the bet
+int currentBet = 0; // the bet
 string chosenGame = ""; //indicates what game was chosen
 string bigChoice = ""; // works with decideIfRetry
 bool cashOut = false; // if false game is running if true game is not
@@ -160,13 +160,13 @@ static int higherlowergame(int bet, int money) // higher lower game
     List<string> suitsdrawn = [];
     for (int i = 1; i < 14; i++)
     {
-        for (int u = 0; u < 4; u++) // makes deck
+        for (int u = 0; u < 4; u++) // makes deck with numbers
         {
             cards.Add(i + 1);
 
         }
     }
-    for (int i = 1; i < 14; i++)
+    for (int i = 1; i < 14; i++) //makes suits for the deck
     {
 
         suits.Add("spades");
@@ -176,7 +176,7 @@ static int higherlowergame(int bet, int money) // higher lower game
 
     }
 
-    suitsdrawn.Add(suits[0]); //makes starting value
+    suitsdrawn.Add(suits[0]); //makes starting value for the game
     suits.Remove(suits[0]);
     cardsDrawn.Add(cards[0]);
     cards.Remove(cards[0]);
@@ -185,7 +185,7 @@ static int higherlowergame(int bet, int money) // higher lower game
     {
         newNumber = rnd.Next(0, cards.Count); // chooses new card
 
-        if (cardsDrawn[score] == 14) Console.WriteLine($"the card is the ace of {suitsdrawn[score]}");
+        if (cardsDrawn[score] == 14) Console.WriteLine($"the card is the ace of {suitsdrawn[score]}"); // writes the card that is in place
         else if (cardsDrawn[score] == 11) Console.WriteLine($"the card is the jack of {suitsdrawn[score]}");
         else if (cardsDrawn[score] == 12) Console.WriteLine($"the card is the queen of {suitsdrawn[score]}");
         else if (cardsDrawn[score] == 13) Console.WriteLine($"the card is the king of {suitsdrawn[score]}");
@@ -199,7 +199,7 @@ static int higherlowergame(int bet, int money) // higher lower game
         }
         guessIsHigherLower = false;
 
-        if (cards[newNumber] == 14) Console.WriteLine($"the new card is the ace of {suits[newNumber]}");
+        if (cards[newNumber] == 14) Console.WriteLine($"the new card is the ace of {suits[newNumber]}"); //writes new card 
         else if (cards[newNumber] == 11) Console.WriteLine($"the new card is the jack of {suits[newNumber]}");
         else if (cards[newNumber] == 12) Console.WriteLine($"the new card is the queen of {suits[newNumber]}");
         else if (cards[newNumber] == 13) Console.WriteLine($"the new card is the king of {suits[newNumber]}");
@@ -245,22 +245,22 @@ static int higherlowergame(int bet, int money) // higher lower game
             {
 
                 keepGoing = Console.ReadLine();
-                if (keepGoing == "yes" || keepGoing == "no") chosenIfKeepGoing = true;
+                if (keepGoing == "yes" || keepGoing == "no") chosenIfKeepGoing = true; 
             }
-            chosenIfKeepGoing = false;
+            chosenIfKeepGoing = false; // cashes out
             if (keepGoing == "no")
             {
-                money += score * bet;
+                money += score * bet; //gives money
                 Console.WriteLine($"you made {score * bet} money");
-                streakIsGoing = false;
+                streakIsGoing = false; // ends loop
             }
 
         }
-        suitsdrawn.Add(suits[newNumber]);
+        suitsdrawn.Add(suits[newNumber]); //moves card from deck to "discard pile"
         suits.Remove(suits[newNumber]);
         cardsDrawn.Add(cards[newNumber]);
         cards.Remove(cards[newNumber]);
-        score++;
+        score++; //multiplier for reward
 
     }
 
@@ -300,7 +300,7 @@ while (cashOut == false && balance > 0)
         {
             balance = higherlowergame(currentBet, balance);
         }
-        Console.WriteLine("play again, choose new game or cashout?");
+        Console.WriteLine("play again, choose new game or cashout?"); // text explains itself
         Console.WriteLine("to play same game again type [again]");
         Console.WriteLine("to choose new game type [new]");
         Console.WriteLine("to cashout type [cashout]");
@@ -308,7 +308,7 @@ while (cashOut == false && balance > 0)
         bigChoice = "";
         while (decideIfRetry == false)
         {
-            bigChoice = Console.ReadLine();
+            bigChoice = Console.ReadLine(); // decice if try again
             if (bigChoice == "again") decideIfRetry = true;
             if (bigChoice == "new")
             {
