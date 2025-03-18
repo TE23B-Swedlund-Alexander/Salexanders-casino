@@ -245,7 +245,7 @@ static int higherlowergame(int bet, int money) // higher lower game
             {
 
                 keepGoing = Console.ReadLine();
-                if (keepGoing == "yes" || keepGoing == "no") chosenIfKeepGoing = true; 
+                if (keepGoing == "yes" || keepGoing == "no") chosenIfKeepGoing = true;
             }
             chosenIfKeepGoing = false; // cashes out
             if (keepGoing == "no")
@@ -309,13 +309,13 @@ while (cashOut == false && balance > 0)
         while (decideIfRetry == false)
         {
             bigChoice = Console.ReadLine(); // decice if try again
-            if (bigChoice == "again") decideIfRetry = true;
-            if (bigChoice == "new")
+            if (bigChoice == "again") decideIfRetry = true; // moves to start of game
+            if (bigChoice == "new") // chose new game cancels game loop
             {
                 decideIfRetry = true;
                 gameChosen = false;
             }
-            if (bigChoice == "cashout")
+            if (bigChoice == "cashout") //chose cashout cancels all loops
             {
                 decideIfRetry = true;
                 gameChosen = false;
@@ -329,9 +329,9 @@ while (cashOut == false && balance > 0)
 
 if (cashOut == true)
 {
-    Console.WriteLine($"you made it out with {balance} mony");
+    Console.WriteLine($"you made it out with {balance} mony"); //shows mony on cashout
 }
-if (balance == 0) Console.WriteLine("ha broke");
+if (balance == 0) Console.WriteLine("ha broke"); // mocks looser
 Console.ReadLine();
 
 
